@@ -1,0 +1,22 @@
+C:\Users\gizmin\Documents\Visual Studio 2017\Projects\Joyjet\WebApi\bin\Debug\netcoreapp2.0\WebApi.deps.json
+C:\Users\gizmin\Documents\Visual Studio 2017\Projects\Joyjet\WebApi\bin\Debug\netcoreapp2.0\WebApi.runtimeconfig.json
+C:\Users\gizmin\Documents\Visual Studio 2017\Projects\Joyjet\WebApi\bin\Debug\netcoreapp2.0\WebApi.runtimeconfig.dev.json
+C:\Users\gizmin\Documents\Visual Studio 2017\Projects\Joyjet\WebApi\bin\Debug\netcoreapp2.0\WebApi.dll
+C:\Users\gizmin\Documents\Visual Studio 2017\Projects\Joyjet\WebApi\obj\Debug\netcoreapp2.0\WebApi.csprojResolveAssemblyReference.cache
+C:\Users\gizmin\Documents\Visual Studio 2017\Projects\Joyjet\WebApi\obj\Debug\netcoreapp2.0\WebApi.csproj.CoreCompileInputs.cache
+C:\Users\gizmin\Documents\Visual Studio 2017\Projects\Joyjet\WebApi\obj\Debug\netcoreapp2.0\WebApi.AssemblyInfoInputs.cache
+C:\Users\gizmin\Documents\Visual Studio 2017\Projects\Joyjet\WebApi\obj\Debug\netcoreapp2.0\WebApi.AssemblyInfo.cs
+C:\Users\gizmin\Documents\Visual Studio 2017\Projects\Joyjet\WebApi\bin\Debug\netcoreapp2.0\WebApi.pdb
+C:\Users\gizmin\Documents\Visual Studio 2017\Projects\Joyjet\WebApi\obj\Debug\netcoreapp2.0\WebApi.dll
+C:\Users\gizmin\Documents\Visual Studio 2017\Projects\Joyjet\WebApi\obj\Debug\netcoreapp2.0\WebApi.pdb
+C:\Users\Luiz Ricardo\Documents\joyjet\backend\Joyjet\WebApi\bin\Debug\netcoreapp2.0\WebApi.deps.json
+C:\Users\Luiz Ricardo\Documents\joyjet\backend\Joyjet\WebApi\bin\Debug\netcoreapp2.0\WebApi.runtimeconfig.json
+C:\Users\Luiz Ricardo\Documents\joyjet\backend\Joyjet\WebApi\bin\Debug\netcoreapp2.0\WebApi.runtimeconfig.dev.json
+C:\Users\Luiz Ricardo\Documents\joyjet\backend\Joyjet\WebApi\bin\Debug\netcoreapp2.0\WebApi.dll
+C:\Users\Luiz Ricardo\Documents\joyjet\backend\Joyjet\WebApi\bin\Debug\netcoreapp2.0\WebApi.pdb
+C:\Users\Luiz Ricardo\Documents\joyjet\backend\Joyjet\WebApi\obj\Debug\netcoreapp2.0\WebApi.csprojAssemblyReference.cache
+C:\Users\Luiz Ricardo\Documents\joyjet\backend\Joyjet\WebApi\obj\Debug\netcoreapp2.0\WebApi.csproj.CoreCompileInputs.cache
+C:\Users\Luiz Ricardo\Documents\joyjet\backend\Joyjet\WebApi\obj\Debug\netcoreapp2.0\WebApi.AssemblyInfoInputs.cache
+C:\Users\Luiz Ricardo\Documents\joyjet\backend\Joyjet\WebApi\obj\Debug\netcoreapp2.0\WebApi.AssemblyInfo.cs
+C:\Users\Luiz Ricardo\Documents\joyjet\backend\Joyjet\WebApi\obj\Debug\netcoreapp2.0\WebApi.dll
+C:\Users\Luiz Ricardo\Documents\joyjet\backend\Joyjet\WebApi\obj\Debug\netcoreapp2.0\WebApi.pdb
