@@ -19,11 +19,12 @@ namespace Joyjet.WebApi.Controllers
 
                 var articles = model.Articles;
                 var fees = model.DeliveryFees;
+                var discounts = model.Discounts;
                 var carts = model.Carts
                     .Select(c => new CartCheckout
                     {
                         Id = c.Id,
-                        Total = GetCartTotal(c, articles, fees)
+                        Total = GetCartTotal(c, articles, fees, discounts)
                     });
 
                 var response = new CheckoutCartsResponse
@@ -41,14 +42,53 @@ namespace Joyjet.WebApi.Controllers
 
         #region Helpers
 
-        private double GetCartTotal(Cart cart, IEnumerable<Article> articles, IEnumerable<DeliveryFees> deliveryFees)
+        private double GetCartTotal(Cart cart, IEnumerable<Article> articles, IEnumerable<DeliveryFees> deliveryFees,
+            IEnumerable<ArticleDiscount> discounts)
         {
-            var articlesTotal = cart.Items.Sum(i =>
-                articles.Single(a => a.Id == i.ArticleId).Price * i.Quantity);
-
+            var articlesTotal = GetArticlesTotal(cart, articles, discounts);
             var fee = GetDeliveryFee(articlesTotal, deliveryFees);
 
             return articlesTotal + fee;
+        }
+
+        private double GetArticlesTotal(Cart cart, IEnumerable<Article> articles,
+            IEnumerable<ArticleDiscount> discounts)
+        {
+            double total = 0;
+
+            foreach (var item in cart.Items)
+            {
+                var article = articles.Single(a => a.Id == item.ArticleId);
+                var price = article.Price;
+                var discount = GetDiscount(article, discounts);
+                var finalValue = (price + discount) * item.Quantity;
+
+                total += finalValue;
+            }
+
+            return total;
+        }
+
+        private double GetDiscount(Article article, IEnumerable<ArticleDiscount> discounts)
+        {
+            var discount = discounts.SingleOrDefault(d => d.ArticleId == article.Id);
+
+            if (discount == null)
+            {
+                return 0;
+            }
+
+            switch (discount.Type)
+            {
+                case DiscountType.Amount:
+                    return -discount.Value;
+
+                case DiscountType.Percentage:
+                    return -(article.Price * discount.Value / 100);
+
+                default:
+                    return 0;
+            }
         }
 
         private double GetDeliveryFee(double articleTotal, IEnumerable<DeliveryFees> deliveryFees)

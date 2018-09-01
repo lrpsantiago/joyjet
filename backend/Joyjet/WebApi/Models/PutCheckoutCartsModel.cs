@@ -11,5 +11,7 @@ namespace Joyjet.WebApi.Models
 
         [JsonProperty("delivery_fees")]
         public IEnumerable<DeliveryFees> DeliveryFees { get; set; }
+
+        public IEnumerable<ArticleDiscount> Discounts { get; set; }
     }
 }
