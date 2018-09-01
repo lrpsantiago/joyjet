@@ -15,7 +15,7 @@ namespace Joyjet.WebApi.Controllers
         {
             try
             {
-                ValidateRequestModel(model);
+                ValidateModel();
 
                 var articles = model.Articles;
                 var fees = model.DeliveryFees;
@@ -80,10 +80,10 @@ namespace Joyjet.WebApi.Controllers
 
             switch (discount.Type)
             {
-                case DiscountType.Amount:
+                case ArticleDiscountType.Amount:
                     return -discount.Value;
 
-                case DiscountType.Percentage:
+                case ArticleDiscountType.Percentage:
                     return -(article.Price * discount.Value / 100);
 
                 default:
@@ -104,21 +104,14 @@ namespace Joyjet.WebApi.Controllers
             return 0;
         }
 
-        private void ValidateRequestModel(PutCheckoutCartsModel model)
+        private void ValidateModel()
         {
-            if (model.Articles == null || model.Articles.Count() <= 0)
+            if (!ModelState.IsValid)
             {
-                throw new Exception("Articles not found.");
-            }
+                var entry = ModelState.First().Value;
+                var error = entry.Errors.First();
 
-            if (model.Carts == null || model.Carts.Count() <= 0)
-            {
-                throw new Exception("Carts not found.");
-            }
-
-            if (model.DeliveryFees == null || model.DeliveryFees.Count() <= 0)
-            {
-                throw new Exception("Delivery Fees not found.");
+                throw new Exception(error.ErrorMessage);
             }
         }
 
