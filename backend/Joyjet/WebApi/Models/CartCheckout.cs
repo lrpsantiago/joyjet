@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Joyjet.WebApi.Models
+﻿namespace Joyjet.WebApi.Models
 {
     public class CartCheckout
     {
