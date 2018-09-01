@@ -5,7 +5,6 @@ namespace Joyjet.WebApi.Models
 {
     public class CartItem
     {
-        [Key]
         [JsonProperty("article_id")]
         public int ArticleId { get; set; }
 

@@ -15,7 +15,7 @@ namespace Joyjet.WebApi.Controllers
         {
             try
             {
-                ValidadeRequestModel(model);
+                ValidateRequestModel(model);
 
                 var articles = model.Articles;
                 var fees = model.DeliveryFees;
@@ -64,7 +64,7 @@ namespace Joyjet.WebApi.Controllers
             return 0;
         }
 
-        private void ValidadeRequestModel(PutCheckoutCartsModel model)
+        private void ValidateRequestModel(PutCheckoutCartsModel model)
         {
             if (model.Articles == null || model.Articles.Count() <= 0)
             {
