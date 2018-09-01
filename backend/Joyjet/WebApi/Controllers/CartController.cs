@@ -9,18 +9,21 @@ namespace Joyjet.WebApi.Controllers
     [Route("api/[controller]")]
     public class CartController : Controller
     {
-        [HttpPost]
+        [HttpPut]
         [Route("checkout")]
-        public IActionResult CheckoutCarts([FromBody]PostCheckoutCartsModel model)
+        public IActionResult CheckoutCarts([FromBody]PutCheckoutCartsModel model)
         {
             try
             {
+                ValidadeRequestModel(model);
+
                 var articles = model.Articles;
+                var fees = model.DeliveryFees;
                 var carts = model.Carts
                     .Select(c => new CartCheckout
                     {
                         Id = c.Id,
-                        Total = GetCartTotal(c, articles)
+                        Total = GetCartTotal(c, articles, fees)
                     });
 
                 var response = new CheckoutCartsResponse
@@ -36,7 +39,49 @@ namespace Joyjet.WebApi.Controllers
             }
         }
 
-        private double GetCartTotal(Cart cart, IEnumerable<Article> articles) =>
-            cart.Items.Sum(i => articles.Single(a => a.Id == i.ArticleId).Price * i.Quantity);
+        #region Helpers
+
+        private double GetCartTotal(Cart cart, IEnumerable<Article> articles, IEnumerable<DeliveryFees> deliveryFees)
+        {
+            var articlesTotal = cart.Items.Sum(i =>
+                articles.Single(a => a.Id == i.ArticleId).Price * i.Quantity);
+
+            var fee = GetDeliveryFee(articlesTotal, deliveryFees);
+
+            return articlesTotal + fee;
+        }
+
+        private double GetDeliveryFee(double articleTotal, IEnumerable<DeliveryFees> deliveryFees)
+        {
+            var fee = deliveryFees.FirstOrDefault(f => f.EligibleTransactionVolume.MinPrice <= articleTotal
+                && (f.EligibleTransactionVolume.MaxPrice ?? double.PositiveInfinity) > articleTotal);
+
+            if (fee != null)
+            {
+                return fee.Price;
+            }
+
+            return 0;
+        }
+
+        private void ValidadeRequestModel(PutCheckoutCartsModel model)
+        {
+            if (model.Articles == null || model.Articles.Count() <= 0)
+            {
+                throw new Exception("Articles not found.");
+            }
+
+            if (model.Carts == null || model.Carts.Count() <= 0)
+            {
+                throw new Exception("Carts not found.");
+            }
+
+            if (model.DeliveryFees == null || model.DeliveryFees.Count() <= 0)
+            {
+                throw new Exception("Delivery Fees not found.");
+            }
+        }
+
+        #endregion
     }
 }
